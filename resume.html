@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/resume.css">
+    <link rel="stylesheet" href="./css/cv-template.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+
+    <!-- Include markdown-it library -->
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+
+    <!-- Include importmap for module imports -->
+    <script type="importmap">
+        {
+          "imports": {
+            "@google/generative-ai": "https://esm.run/@google/generative-ai"
+          }
+        }
+    </script>
+
+    <title>Resume Builder | Manish</title>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-heading">
+            <img src="./images/resume-logo.png" alt="Resume Logo" class="logo">
+            <h1>Resume Builder</h1>
+        </div>
+
+        <div>
+            <button id="printButton">Print</button>
+            <span>&nbsp</span>
+            <button id="downloadButton">Download</button>
+        </div>
+
+    </nav>
+
+    <div class="container">
+
+        <div id="left-panel">
+            <div id="about-section">
+                <h1 class="heading mb-1">Personal Details</h1>
+                <input type="text" name="name" id="firstname" placeholder="Full Name">
+                <input type="text" name="address" id="address" placeholder="Enter City">
+                <input type="email" name="email" id="email" placeholder="Email">
+                <input type="tel" id="phone" name="phone" placeholder="Phone Number">
+                <input type="date" name="dob" id="dob">
+                <div class="file-input-wrapper">
+                    <label for="profile-image">Select your photo &nbsp;&nbsp;&nbsp;</label>
+                    <input type="file" id="profile-image">
+                    
+                </div>
+            </div>
+
+            <div id="professional-details">
+                <h1 class="heading">Professional Details</h1>
+                <h2>Objective</h2>
+                <textarea name="objective" id="objective" placeholder="Objective"></textarea>
+                <div id="experience-section" class="mt-1">
+                    <h2 class="mb-1">Experience</h2>
+                    <div class="experience-item">
+                        <input type="text" name="company" placeholder="Company Name">
+                        <input type="text" name="location" placeholder="Location">
+                        <input type="text" name="job-title" placeholder="Job Title">
+                        <textarea name="description" cols="30" rows="5" placeholder="Description"></textarea>
+                        <input type="date" name="start-date">
+                        <input type="date" name="end-date">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                    <button id="addExperience">Add Experience</button>
+                </div>
+                <div id="skills-section" class="mt-1">
+                    <h2 class="mb-1">Skills</h2>
+                    <div class="skill-item">
+                        <input type="text" name="skill" placeholder="Skill">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                    <button id="addSkill">Add Skill</button>
+                </div>
+
+                <div id="project-section">
+                    <h2 class="mb-1">Projects</h2>
+                    <div class="project-item">
+                        <input type="text" name="project-title" placeholder="Project Title">
+                        <textarea name="description" cols="30" rows="5" placeholder="Description"></textarea>
+                        <input type="date" name="start-date">
+                        <input type="date" name="end-date">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                    <button id="addProject">Add Project</button>
+                </div>
+                <div id="education-section">
+                    <h2 class="mb-1">Education</h2>
+                    <div class="education-item">
+                        <input type="text" name="college" placeholder="College Name">
+                        <input type="text" name="qualification" placeholder="Qualification">
+                        <input type="date" name="start-date" placeholder="Start Date">
+                        <input type="date" name="end-date" placeholder="End Date">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                    <button id="addEducation">Add Education</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="resume-review">
+            <div class="row" id="row">
+                <div class="col-4">
+                    <!-- Content for the first column -->
+
+                    <img src="https://www.pphfoundation.ca/wp-content/uploads/2018/05/default-avatar.png" alt=""
+                        class="my-image" id="my-image">
+                    <h1 id="name"></h1>
+                    <div class="profile">
+                        <h2>PROFILE</h2>
+                        <p>
+                            <span><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;</span><span
+                                id="personal-address"></span>
+                        </p>
+                        <p>
+                            <span><i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;</span><span
+                                id="personal-email"></span>
+                        </p>
+                        <p>
+                            <span><i class="fa-solid fa-phone"></i>&nbsp;&nbsp;</span><span id="personal-number"></span>
+                        </p>
+
+                        <p>
+                            <span><i class="fa-solid fa-calendar"></i>&nbsp;&nbsp;<span><span id="birth-date"></span>
+                        </p>
+                    </div>
+
+                    <div class="your-skills">
+                        <h2>SKILLS</h2>
+                        <ul class="skills-list">
+                            <!-- Skills will be dynamically added here -->
+                        </ul>
+                    </div>
+
+
+                </div>
+
+                <div class="col-1">
+
+                </div>
+                <div class="col-8">
+                    <!-- Content for the second column -->
+                    <!-- Card components for Objective, Experience, Projects, and Education will be dynamically filled here -->
+
+                    <!-- Objective -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>OBJECTIVE</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="objective-text">
+                                <!-- Objective content will be dynamically inserted here -->
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Work Experience -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>EXPERIENCE</h2>
+                        </div>
+                        <div class="card-body">
+                            <ul class="experience-list list">
+                                <!-- Experiences will be dynamically added here -->
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>PROJECTS</h2>
+                        </div>
+                        <div class="card-body">
+                            <ul class="projects-list list">
+                                <!-- Projects will be dynamically added here -->
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>EDUCATION</h2>
+                        </div>
+                        <div class="card-body">
+                            <ul class="education-list list">
+                                <!-- Educations will be dynamically added here -->
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div class="job-project-button">
+                <button id="recommendProjectsBtn">Get Project Recommendations</button>
+                <span>&nbsp;&nbsp;</span>
+                <button id="suggestJobBtn">Get Job Suggestions</button>
+            </div>
+
+            <div id="projectRecommendations" style="display: none;"></div>
+
+            <div id="jobSuggestions" style="display: none;"></div>
+
+        </div>
+    </div>
+
+    <script src="./js/resume.js"></script>
+    <script src="./js/projectRecommendations.js"></script>
+    <script type="module" src="./js/jobSuggestions.js"></script>
+</body>
+
+</html>

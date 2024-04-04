@@ -1,0 +1,115 @@
+#resume-review {
+    margin-right: 3rem;
+    overflow-x: hidden;
+    /* background-color: white; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.row-1 {
+    background-color: white;
+}
+
+.col-1 {
+    flex: 0.2;
+    background-color: white;
+}
+.row {
+    display: flex;
+    /* gap: 2rem; */
+    padding: 1rem;
+    /* border: 1px solid red; */
+    /* box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); */
+    height: 100%;
+    background-color: white;
+    
+}
+
+.col-4 {
+    flex: 4;
+    /* border: 1px solid blue; */
+    text-align: center;
+    /* background-color: rgb(231, 216, 237); */
+    /* background-color:  rgba(237, 177, 1, 1); */
+    background-color: #E6E6FA;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+   
+}
+
+
+.col-8 {
+    flex: 8;
+    /* border: 1px solid pink; */
+    background-color: white;
+}
+
+.col-4 .my-image {
+    max-width: 100%;
+    width: 15rem;
+    /* display: inline-block;  */
+   margin: 2rem auto;
+}
+
+.col-4 > *:not(.my-image) {
+    text-align: left;
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-right: 0.5rem;
+}
+
+
+.skills-list {
+    padding-left: 1rem; /* Add some left padding to the list */
+}
+
+.skills-list li {
+    margin-bottom: 0.5rem;
+}
+
+.card {
+    margin-block: 2rem;
+}
+
+.card-header {
+    /* background-color: rgba(237, 177, 1, 1); */
+    background-color: #E6E6FA;
+    margin-bottom: 1rem;
+    padding: 0.4rem;
+}
+
+ul:not(.skills-list)  {
+    list-style: none;
+}
+
+.list li {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0; /* Add padding to create space */
+    margin-bottom: 10px; /* Add margin-bottom to create space */
+}
+
+.list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0; /* Remove margin-bottom for the last item */
+}
+
+
+#resume-review p, #resume-review #name  {
+    /* border: 1px solid blue; */
+    word-wrap: break-word; /* Allow long words to break and wrap */
+    overflow-wrap: break-word; /* Fallback for older browsers */
+    word-break: break-all;
+}
+
+#resume-review p, #resume-review li {
+    font-size: 0.92rem;
+}
+
+#resume-review h4 {
+    font-size: 1.2rem;
+}

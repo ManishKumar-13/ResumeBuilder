@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Resume Builder | Manish</title>
+</head>
+
+<body>
+    <nav>
+        <p class="resume-builder-text">resume<span class="bold-text">builder</span></p>
+
+        <div class="button-container">
+            <button onclick="showModal('signInModal')">Sign In</button>
+            <button onclick="showModal('registerModal')">Register</button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content">
+            <h1>Create a resume in minutes and apply for the job of your dreams.</h1>
+
+            <p> Our resume builder is powerful and easy to use, with a range of amazing functions. Custom-tailor resumes
+                for any job within minutes. Increase your interview chances and rise above the competition. </p>
+        </div>
+
+        <div class="photo-container">
+            <img src="./images/template-1.jpg" alt="Photo 1">
+            <img src="./images/template-3.jpg" alt="Photo 2">
+            <img src="./images/template-6.jpg" alt="Photo 3">
+            <img src="./images/template-2.jpeg" alt="Photo 4">
+            <img src="./images/template-5.jpeg" alt="Photo 5">
+            <img src="./images/template-4.jpg" alt="Photo 6">
+        </div>
+    </main>
+
+    <div id="signInModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signInModal')">&times;</span>
+            <p class="resume-builder-text">resume<span class="bold-text">builder</span></p>
+            <p>Sign-in to Your Account</p>
+            <input type="text" id="signInUsername" placeholder="Username" required>
+            <input type="password" id="signInPassword" placeholder="Password" required>
+            <button onclick="signIn()">Sign In</button>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <p class="resume-builder-text">resume<span class="bold-text">builder</span></p>
+            <p>Register</p>
+            <input type="text" id="registerUsername" placeholder="Username" required>
+            <input type="password" id="registerPassword" placeholder="Password" required>
+            <button onclick="register()">Register</button>
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+
+</body>
+
+</html>
