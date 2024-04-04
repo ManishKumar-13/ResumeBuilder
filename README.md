@@ -2,6 +2,10 @@
 
 Resume Builder is a web application that allows users to create professional resumes quickly and easily. With its intuitive interface and powerful features, users can customize their resumes to suit any job application.
 
+## Hosted Link
+
+You can access the live version of the Resume Builder by clicking [here] (https://manishkumar-13.github.io/ResumeBuilder/). Feel free to explore the various features and functionalities offered by the application.
+
 ## Features
 
 - **User Authentication:** Users can sign in or register for an account to save their resume data securely.
